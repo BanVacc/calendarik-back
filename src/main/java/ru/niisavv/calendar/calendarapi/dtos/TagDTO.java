@@ -4,12 +4,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 
 /**
- * Трансферный объект для создания нового тега к записи
+ * Трансферный объект тега к записи в календаре
  */
 public class TagDTO {
 
     /**
-     * Идентификатор
+     * Идентификатор тега
      */
     @Null(groups = {Create.class})
     Long id;
@@ -36,6 +36,10 @@ public class TagDTO {
         this.name = name;
     }
 
+    /**
+     * Интерфейс-маркер для группы валидаций, используемых в DTO,
+     * предназначенных для создания новых объектов.
+     */
     public interface Create {
 
     }

@@ -1,14 +1,26 @@
 package ru.niisavv.calendar.calendarapi.dtos;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-@JsonSerialize
+/**
+ * Трансферный объект исполнителя
+ */
 public class ArtistDTO {
+    /**
+     * Идентификатор исполнителя
+     */
     private long id;
+
+    /**
+     * Имя исполнителя
+     */
     private String name;
+
+    /**
+     * Ссылка на аватар исполнителя
+     */
     private String imageUrl;
 
     public ArtistDTO() {
+        // Пустой конструктор для мапперов
     }
 
     @Override

@@ -1,10 +1,11 @@
 package ru.niisavv.calendar.calendarapi.dtos;
 
+import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 /**
- * Трансферный объект возвращаемый клиенту
+ * Трансферный объект жанра возвращаемый клиенту
  */
 public class GenreDTO {
 
@@ -13,8 +14,8 @@ public class GenreDTO {
             groups = {New.class, Update.class})
     private String name;
 
-    @Positive(message = "Значение идентификатора должно быть положительным"
-            /*, groups = {New.class}*/)
+    @Positive(message = "Значение идентификатора должно быть положительным")
+    @Null(groups = {New.class}, message = "При создании объекта не должен быть указан идентификатор")
     private long id;
 
     public GenreDTO(String name, long id) {
@@ -38,9 +39,17 @@ public class GenreDTO {
         this.id = id;
     }
 
+    /**
+     * Интерфейс-маркер для группы валидаций, используемых в DTO,
+     * предназначенных для создания новых объектов.
+     */
     public interface New {
     }
 
+    /**
+     * Интерфейс-маркер для группы валидаций, используемых в DTO,
+     * предназначенных для обновления существующих объектов.
+     */
     public interface Update {
     }
 }

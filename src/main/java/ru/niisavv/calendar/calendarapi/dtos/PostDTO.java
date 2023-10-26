@@ -9,24 +9,46 @@ import jakarta.validation.constraints.Past;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Трансферный объект поста в календаре
+ */
 public class PostDTO {
+    /**
+     * Идентификатор поста
+     */
     @Null(groups = {Create.class})
     private Long id;
 
+    /**
+     * Владелец записи - пользователь добавивший запись
+     */
     @Null(groups = {Create.class})
     private UserDTO user;
 
+    /**
+     * День за который был добавлен пост
+     */
     @NotNull(groups = {Out.class, Create.class})
     @Past(groups = {Create.class})
     @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDate date;
 
+    /**
+     * Описание поста, заметка
+     */
     @Max(value = 1024, message = "Описание не должно превышать 1024 символа", groups = {Create.class})
     private String description;
 
+    /**
+     * Ссылка на трек поста
+     */
     @NotNull(groups = {Create.class})
     @Null(groups = {Out.class})
     private String songUrl;
+
+    /**
+     * Список идентификаторов тегов поста
+     */
     @Null(groups = {Out.class})
     private List<Long> tagIds;
 
@@ -78,6 +100,10 @@ public class PostDTO {
         this.tagIds = tagIds;
     }
 
+    /**
+     * Интерфейс-маркер для группы валидаций, используемых в DTO,
+     * предназначенных для создания новых объектов.
+     */
     public interface Create {
     }
 

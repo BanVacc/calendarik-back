@@ -7,27 +7,55 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+/**
+ * Трансферный объект пользователя сервиса
+ */
 public class UserDTO {
+    /**
+     * Идентификатор пользователя
+     */
     private Long id;
 
+    /**
+     * Имя пользователя в системе
+     */
     @NotBlank(message = "Имя пользователя не должно быть пустым", groups = New.class)
     @Size(min = 3, max = 256, message = "Имя должно быть длиной от 3 до 256 символов", groups = New.class)
     private String username;
 
+    /**
+     * Имя пользователя
+     */
     private String name;
 
+    /**
+     * E-mail пользователя
+     */
     @NotBlank(message = "Email не должен быть пустым", groups = New.class)
     @Email(message = "Невалидный email", groups = New.class)
     private String email;
 
+    /**
+     * Пароль пользователя
+     */
     @NotBlank(message = "Пароль не должен быть пустым", groups = New.class)
     @Size(min = 6, max = 256, message = "Пароль должен содержать от 6 до 256 символов", groups = New.class)
     private String password;
 
+    /**
+     * Дата рождения пользователя
+     */
     @Past
     private LocalDate birthday;
+
+    /**
+     * Ссылка на аватар пользователя
+     */
     private String image;
 
+    /**
+     * Флаг публичной доступности профиля пользователя
+     */
     private boolean isPublicProfile = true;
 
     @Override
@@ -107,7 +135,7 @@ public class UserDTO {
     }
 
     /**
-     * Интерфейс для группы параметров,
+     * Интерфейс для группы валидаций параметров,
      * используемых для создания пользователя
      */
     public interface New {

@@ -3,11 +3,33 @@ package ru.niisavv.calendar.calendarapi.dtos;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Трансферный объект песни
+ */
 public class SongDTO {
+    /**
+     * Идентификатор песни
+     */
     private long id;
+
+    /**
+     * Название песни
+     */
     private String name;
+
+    /**
+     * Список жанров песни
+     */
     private List<GenreDTO> genres = new ArrayList<>();
+
+    /**
+     * Список исполнителей песни
+     */
     private List<ArtistDTO> artists = new ArrayList<>();
+
+    /**
+     * Ссылка на обложку песни
+     */
     private String image;
 
     public SongDTO() {
